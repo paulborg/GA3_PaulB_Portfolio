@@ -34,7 +34,7 @@ public class PlayerInteraction : MonoBehaviour
                     currentInteractable.DisableOutline();
                 }
 
-                if (newInteractable.enabled && !newInteractable.interactUsed)
+                if (newInteractable.enabled) // && !newInteractable.interactUsed
                 {
                     SetCurrentInteractable(newInteractable);
                 }
