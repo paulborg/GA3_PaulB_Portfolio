@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ProgressTracker.instance.PrintAllFlags();
+        }
+        
         #region Handles Movement
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -83,4 +88,6 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
+
+
 }

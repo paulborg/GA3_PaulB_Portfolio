@@ -13,7 +13,9 @@ public class BasicTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter) && !triggerUsed)  return;
+        if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter) && !triggerUsed)  
+            return;
+
         else
         {
             this.GetComponent<BoxCollider>().enabled = false;

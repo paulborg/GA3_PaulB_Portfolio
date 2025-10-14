@@ -10,6 +10,10 @@ public class Interactable : MonoBehaviour
     public string label;
     public bool interactUsed;
 
+    [Header("Progress Tracking")]
+    public string progressFlagName;
+    public bool setFlagTrue = true;
+
     public UnityEvent onInteract;
 
     void Start()
@@ -21,6 +25,12 @@ public class Interactable : MonoBehaviour
     public void Interact()
     {
         onInteract.Invoke();
+
+        if (!string.IsNullOrEmpty(progressFlagName))
+        {
+            ProgressTracker.instance.SetFlag(progressFlagName, setFlagTrue);
+        }
+
         interactUsed = true;
     }
 

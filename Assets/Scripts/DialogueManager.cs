@@ -15,6 +15,8 @@ public class DialogueManager : MonoBehaviour
     public TraitsManager traitsManager;
     PlayerController playerController;
 
+   
+
     private void Start()
     {
         uiController = UI_Controller.instance;
@@ -122,10 +124,8 @@ public class DialogueManager : MonoBehaviour
         uiController.ClearChoices();
         playerController.canMove = true;
         playerController.LockCursor();
-
     }
 
 }
-
 
 
