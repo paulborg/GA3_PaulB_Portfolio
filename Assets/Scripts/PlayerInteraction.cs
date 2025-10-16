@@ -6,7 +6,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     public float playerReach = 4f;
     Interactable currentInteractable;
-    
+
 
     // Update is called once per frame
     void Update()
@@ -34,7 +34,7 @@ public class PlayerInteraction : MonoBehaviour
                     currentInteractable.DisableOutline();
                 }
 
-                if (newInteractable.enabled) // && !newInteractable.interactUsed
+                if (newInteractable.enabled && !newInteractable.interactDisabled)
                 {
                     SetCurrentInteractable(newInteractable);
                 }

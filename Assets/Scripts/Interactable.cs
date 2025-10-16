@@ -7,17 +7,22 @@ public class Interactable : MonoBehaviour
 {
 
     Outline outline;
+
+    [Header("Interactable Info")]
     public string label;
-    //public bool interactUsed;
+    public bool interactDisabled; //Added when integrating ProgressCondition. Additional check for disabling 
+
+    [Header("Condition Check")]
+    [SerializeField] private ProgressCondition condition;
 
     [Header("Progress Tracking")]
     public string progressFlagName;
     public bool setFlagTrue = true;
 
+    [Header("Interaction Events")]
     public UnityEvent onInteract;
 
-    [Header("Condition Check")]
-    [SerializeField] private ProgressCondition condition;
+    
 
     void Start()
     {
@@ -27,6 +32,8 @@ public class Interactable : MonoBehaviour
 
     public void Interact()
     {
+        if (interactDisabled) return;
+        
         if (condition != null && !condition.ConditionMet())
         {
             Debug.Log($"Interaction blocked. Condition check performed.'{condition.flagName}'");
@@ -34,13 +41,14 @@ public class Interactable : MonoBehaviour
         }
 
         onInteract.Invoke();
+        interactDisabled = true;
+        DisableOutline();
+        UI_Controller.instance.DisableInteractionText();
 
         if (!string.IsNullOrEmpty(progressFlagName))
         {
             ProgressTracker.instance.SetFlag(progressFlagName, setFlagTrue);
         }
-
-        //interactUsed = true;
     }
 
     public void DisableOutline()
@@ -53,5 +61,9 @@ public class Interactable : MonoBehaviour
         outline.enabled = true;
     }
 
+    public void DisableInteract()
+    {
+        interactDisabled = true;
+    }
 
 }

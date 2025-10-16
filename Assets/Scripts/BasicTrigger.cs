@@ -6,19 +6,29 @@ using UnityEngine.Events;
 
 public class BasicTrigger : MonoBehaviour
 {
+    [Header("Trigger Info")]
     [SerializeField] string tagFilter;
-    [SerializeField] UnityEvent onTriggerEnter;
-    [SerializeField] UnityEvent onTriggerExit;
-    //[SerializeField] bool triggerUsed;
+    [SerializeField] bool triggerDisabled;
 
     [Header("Condition Check")]
     [SerializeField] private ProgressCondition condition;
 
+    [Header("Trigger Events")]
+
+    [SerializeField] UnityEvent onTriggerEnter;
+    [SerializeField] UnityEvent onTriggerExit;
+   
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter))
+        if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter) && !triggerDisabled)
         {
             return;
+        }
+
+        else
+        {
+            this.GetComponent<BoxCollider>().enabled = false;
         }
 
         if (condition != null && !condition.ConditionMet())
@@ -28,7 +38,7 @@ public class BasicTrigger : MonoBehaviour
         }
 
         onTriggerEnter.Invoke();
-
+        triggerDisabled = true;
     }
 
 

@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
 
     private int dialogueIndex;
     private UI_Controller uiController;
-    private bool isDialogueActive;
+    [SerializeField]public bool isDialogueActive;
 
     public TraitsManager traitsManager;
     PlayerController playerController;
