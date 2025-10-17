@@ -17,53 +17,59 @@ public class BasicTrigger : MonoBehaviour
 
     [SerializeField] UnityEvent onTriggerEnter;
     [SerializeField] UnityEvent onTriggerExit;
+    [SerializeField] UnityEvent onConditionFail;
    
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter) && !triggerDisabled)
+        if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter)) // && !triggerDisabled
         {
             return;
+        }
+
+        //else
+        //{
+        //    this.GetComponent<BoxCollider>().enabled = false;
+        //}
+
+        if (condition != null && !condition.AllConditionsMet())
+        {
+            onConditionFail.Invoke();
+            Debug.Log("Trigger blocked. Condition check performed.");
         }
 
         else
         {
-            this.GetComponent<BoxCollider>().enabled = false;
+            onTriggerEnter.Invoke();
         }
 
-        if (condition != null && !condition.ConditionMet())
-        {
-            Debug.Log($"Trigger blocked. Condition check performed.'{condition.flagName}'");
-            return;
-        }
-
-        onTriggerEnter.Invoke();
-        triggerDisabled = true;
+        // triggerDisabled = true;
     }
-
-
-    #region //Original OnTriggerEnter
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter) && !triggerUsed)  
-    //        return;
-
-    //    else
-    //    {
-    //        this.GetComponent<BoxCollider>().enabled = false;
-    //    }
-    //    onTriggerEnter.Invoke();
-    //    triggerUsed = true;
-
-    //}
-
-    #endregion
-
 
     void OnTriggerExit(Collider other)
     {
-        if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter)) return;
+        if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter))
+        {
+            return;
+        }
         onTriggerExit.Invoke();
     }
 }
+
+#region // First iteration of BasicTrigger.cs OnTriggerEnter method //
+//void OnTriggerEnter(Collider other)
+//{
+//    if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter) && !triggerUsed)  
+//        return;
+
+//    else
+//    {
+//        this.GetComponent<BoxCollider>().enabled = false;
+//    }
+//    onTriggerEnter.Invoke();
+//    triggerUsed = true;
+
+//}
+
+#endregion
 

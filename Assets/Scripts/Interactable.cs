@@ -10,7 +10,7 @@ public class Interactable : MonoBehaviour
 
     [Header("Interactable Info")]
     public string label;
-    public bool interactDisabled; //Added when integrating ProgressCondition. Additional check for disabling 
+    public bool interactDisabled; //Added when integrating ProgressCondition. Additional check for disabling interaction.
 
     [Header("Condition Check")]
     [SerializeField] private ProgressCondition condition;
@@ -21,8 +21,7 @@ public class Interactable : MonoBehaviour
 
     [Header("Interaction Events")]
     public UnityEvent onInteract;
-
-    
+    public UnityEvent onConditionFail;
 
     void Start()
     {
@@ -32,11 +31,19 @@ public class Interactable : MonoBehaviour
 
     public void Interact()
     {
-        if (interactDisabled) return;
-        
-        if (condition != null && !condition.ConditionMet())
+        if (interactDisabled)
         {
-            Debug.Log($"Interaction blocked. Condition check performed.'{condition.flagName}'");
+            return;
+        }
+        
+        if (condition != null && !condition.AllConditionsMet())
+        {
+            Debug.Log("Interaction blocked. Condition check performed.");
+            onConditionFail.Invoke();
+
+            //DisableOutline();
+            //UI_Controller.instance.DisableInteractionText();
+
             return;
         }
 

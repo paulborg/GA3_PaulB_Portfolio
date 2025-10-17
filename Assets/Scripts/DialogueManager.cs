@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
@@ -14,8 +15,6 @@ public class DialogueManager : MonoBehaviour
 
     public TraitsManager traitsManager;
     PlayerController playerController;
-
-   
 
     private void Start()
     {

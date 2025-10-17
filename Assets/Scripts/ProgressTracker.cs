@@ -32,7 +32,10 @@ public class ProgressTracker : MonoBehaviour
         foreach (var flag in flagList)
         {
             if (!flagDictionary.ContainsKey(flag.flagName))
+            {
                 flagDictionary.Add(flag.flagName, flag.value);
+            }
+                
         }
     }
 
@@ -45,7 +48,7 @@ public class ProgressTracker : MonoBehaviour
     
     public void SetFlag(string flagName, bool value)
     {
-        // Sync Dictionary Flags
+        // Sync Dictionary Flags //
         if (flagDictionary.ContainsKey(flagName))
         { 
             flagDictionary[flagName] = value; 
@@ -55,7 +58,7 @@ public class ProgressTracker : MonoBehaviour
             flagDictionary.Add(flagName, value);
         }
             
-        // Sync List Flags
+        // Sync List Flags //
         var existing = flagList.Find(f => f.flagName == flagName);
         if (existing != null)
         {
@@ -70,16 +73,36 @@ public class ProgressTracker : MonoBehaviour
     public bool GetFlag(string flagName)
     {
         if (flagDictionary.TryGetValue(flagName, out bool value))
+        {
             return value;
+        }
         return false;
     }
 
+    // Helper Method for flag check from ProgressCondition.cs //
+    public bool HasFlag(string flagName)
+    {
+        return flagDictionary.ContainsKey(flagName);
+    }
+
+    // Helper Method for setting flags from Events //
+
+    public void SetFlagFromEvent(string flagName)
+    {
+        SetFlag(flagName, true);
+    }
+
+    // DEBUG Method for printing all flags //
     public void PrintAllFlags()
     {
         foreach (var kvp in flagDictionary)
+        {
             Debug.Log($"{kvp.Key}: {kvp.Value}");
+        }
+            
     }
 
+    // DEBUG GUI for displaying all flags and their values //
     private void OnGUI()
     {
         GUILayout.BeginArea(new Rect(10, 10, 300, 500), GUI.skin.box);
