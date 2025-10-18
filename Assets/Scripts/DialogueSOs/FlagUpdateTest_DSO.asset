@@ -10,28 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106cafa0cd4540449855367ffabb1e49, type: 3}
-  m_Name: Hallway_DSO
+  m_Name: FlagUpdateTest_DSO
   m_EditorClassIdentifier: 
-  charName: Me
+  charName: TestName
   dialogueLines:
-  - Hmm... Should I be going down here?
-  - Maybe I should check in at the reception first...
+  - Will this work?
   choices:
   - dialogueIndex: 0
     choices:
-    - '[Keep going]'
-    - '[Hesitate]'
-    nextDialogueIndexes: 0200000001000000
-    traitToUpdate: []
-    traitDelta: []
+    - Yes
+    - No
+    nextDialogueIndexes: 0100000001000000
+    traitToUpdate:
+    - extroversion
+    - neuroticism
+    traitDelta:
+    - 10
+    - -10
     flagsToSet:
+    - '"Thanks"'
     - '"BypassedReception"'
     flagValues: 0101
-  - dialogueIndex: 1
-    choices:
-    - '[Turn back]'
-    nextDialogueIndexes: 02000000
-    traitToUpdate: []
-    traitDelta: []
-    flagsToSet: []
-    flagValues: 

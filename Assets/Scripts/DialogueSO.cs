@@ -21,6 +21,9 @@ public class DialogueChoice
 
     public string[] traitToUpdate;
     public float[] traitDelta;
+
+    public string[] flagsToSet;
+    public bool[] flagValues;
 }
 
 

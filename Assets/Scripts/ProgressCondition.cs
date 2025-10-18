@@ -12,23 +12,44 @@ public class ConditionCheck
 public class ProgressCondition : MonoBehaviour
 {
     [SerializeField] private ConditionCheck[] conditions;
+    [SerializeField] private bool useOrLogic = false;
 
     public bool AllConditionsMet()
     {
-        foreach (var condition in conditions)
+        if (conditions == null || conditions.Length == 0)
         {
-            if (!ProgressTracker.instance.HasFlag(condition.flagName))
-            {
-                return false;
-            }
-                
-            if (ProgressTracker.instance.GetFlag(condition.flagName) != condition.requiredValue)
-            {
-                return false;
-            }
-                
+            return true;
         }
-        return true;
+
+        if (useOrLogic)
+        {
+            foreach (var condition in conditions)
+            {
+                if (ProgressTracker.instance.HasFlag(condition.flagName) && ProgressTracker.instance.GetFlag(condition.flagName) == condition.requiredValue)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        else
+        {
+            foreach (var condition in conditions)
+            {
+                if (!ProgressTracker.instance.HasFlag(condition.flagName))
+                {
+                    return false;
+                }
+
+                if (ProgressTracker.instance.GetFlag(condition.flagName) != condition.requiredValue)
+                {
+                    return false;
+                }
+
+            }
+            return true;
+        }
     }
 }
 

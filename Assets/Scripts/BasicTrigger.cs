@@ -22,15 +22,15 @@ public class BasicTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter)) // && !triggerDisabled
+        if (!string.IsNullOrEmpty(tagFilter) && !other.gameObject.CompareTag(tagFilter) && !triggerDisabled) 
         {
             return;
         }
 
-        //else
-        //{
-        //    this.GetComponent<BoxCollider>().enabled = false;
-        //}
+        else
+        {
+            this.GetComponent<BoxCollider>().enabled = false;
+        }
 
         if (condition != null && !condition.AllConditionsMet())
         {
@@ -43,7 +43,7 @@ public class BasicTrigger : MonoBehaviour
             onTriggerEnter.Invoke();
         }
 
-        // triggerDisabled = true;
+        triggerDisabled = true;
     }
 
     void OnTriggerExit(Collider other)

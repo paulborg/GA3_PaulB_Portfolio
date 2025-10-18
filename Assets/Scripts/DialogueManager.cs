@@ -81,6 +81,8 @@ public class DialogueManager : MonoBehaviour
             int nextIndex = choices.nextDialogueIndexes[i];
             string trait = "";
             float delta = 0f;
+            string flagName = "";
+            bool flagValue = true;
 
             if (choices.traitToUpdate != null && i < choices.traitToUpdate.Length)
             {
@@ -92,14 +94,31 @@ public class DialogueManager : MonoBehaviour
                 delta = choices.traitDelta[i];
             }
 
+            if (choices.flagsToSet != null && i < choices.flagsToSet.Length)
+            {
+                flagName = choices.flagsToSet[i];
+            }
+
+            if (choices.flagValues != null && i < choices.flagValues.Length)
+            {
+                flagValue = choices.flagValues[i];
+            }
+
             string traitToUpdate = trait;
             float traitDelta = delta;
+            string flagToUpdate = flagName;
+            bool flagToSetValue = flagValue;
 
             uiController.CreateChoiceButton(choices.choices[i], () =>
             {
                 if (!string.IsNullOrEmpty(traitToUpdate))
                 {
                     traitsManager.UpdateTraits(traitToUpdate, traitDelta);
+                }
+
+                if (!string.IsNullOrEmpty(flagToUpdate))
+                {
+                    ProgressTracker.instance.SetFlag(flagToUpdate, flagToSetValue);
                 }
 
                 ChooseOption(nextIndex);
@@ -127,4 +146,78 @@ public class DialogueManager : MonoBehaviour
 
 }
 
+#region // First Attempt At ProgressTracker Integration with choice buttons. //
+//void DisplayChoices(DialogueChoice choices)
+//{
+//    for (int i = 0; i < choices.choices.Length; i++)
+//    {
+//        int nextIndex = choices.nextDialogueIndexes[i];
+//        string trait = "";
+//        float delta = 0f;
 
+//        if (choices.traitToUpdate != null && i < choices.traitToUpdate.Length)
+//        {
+//            trait = choices.traitToUpdate[i];
+//        }
+
+//        if (choices.traitDelta != null && i < choices.traitDelta.Length)
+//        {
+//            delta = choices.traitDelta[i];
+//        }
+
+//        string traitToUpdate = trait;
+//        float traitDelta = delta;
+
+//        uiController.CreateChoiceButton(choices.choices[i], () =>
+//        {
+//            if (!string.IsNullOrEmpty(traitToUpdate))
+//            {
+//                traitsManager.UpdateTraits(traitToUpdate, traitDelta);
+//            }
+
+//            if (choices.flagsToSet != null && i < choices.flagsToSet.Length)
+//            {
+//                string flagName = choices.flagsToSet[i];
+//                bool valueToSet = true;
+
+//                if (choices.flagValues != null && i < choices.flagValues.Length)
+//                {
+//                    valueToSet = choices.flagValues[i];
+//                }
+
+//                if (!string.IsNullOrEmpty(flagName))
+//                {
+//                    Debug.Log($"[DialogueManager] Trying to set flag '{flagName}' = {valueToSet}");
+//                    if (ProgressTracker.instance != null)
+//                    {
+//                        ProgressTracker.instance.SetFlag(flagName, valueToSet);
+//                        Debug.Log($"[DialogueManager] SUCCESS: Set flag '{flagName}' = {valueToSet}");
+//                    }
+//                    else
+//                    {
+//                        Debug.LogError("[DialogueManager] ERROR: ProgressTracker.instance is NULL!");
+//                    }
+
+
+//                    //ProgressTracker.instance.SetFlag(flagName, valueToSet);
+//                    //Debug.Log($"[DialogueManager] Set flag '{flagName}' = {valueToSet}");
+//                }
+//                else
+//                {
+//                    Debug.LogWarning("[DialogueManager] Flag name was empty — skipping.");
+//                }
+//            }
+
+//            else
+//            {
+//                Debug.Log("[DialogueManager] No flagsToSet configured or index out of range.");
+//            }
+
+
+
+
+//            ChooseOption(nextIndex);
+//        });
+//    }
+//}
+#endregion

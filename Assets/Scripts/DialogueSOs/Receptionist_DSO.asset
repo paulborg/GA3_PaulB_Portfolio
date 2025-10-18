@@ -25,21 +25,30 @@ MonoBehaviour:
     nextDialogueIndexes: 01000000
     traitToUpdate: []
     traitDelta: []
+    flagsToSet: []
+    flagValues: 
   - dialogueIndex: 1
     choices:
     - I think I'm here for an interview?
     nextDialogueIndexes: 02000000
     traitToUpdate: []
     traitDelta: []
+    flagsToSet: []
+    flagValues: 
   - dialogueIndex: 2
     choices:
     - I got a message about "Application for Entry."
     nextDialogueIndexes: 03000000
     traitToUpdate: []
     traitDelta: []
+    flagsToSet: []
+    flagValues: 
   - dialogueIndex: 3
     choices:
     - Thanks.
     nextDialogueIndexes: 04000000
     traitToUpdate: []
     traitDelta: []
+    flagsToSet:
+    - '"Thanks"'
+    flagValues: 01
