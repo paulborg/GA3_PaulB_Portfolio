@@ -36,3 +36,19 @@ MonoBehaviour:
     traitDelta: []
     flagsToSet: []
     flagValues: 
+  - dialogueIndex: 2
+    choices:
+    - Sorry.
+    nextDialogueIndexes: 04000000
+    traitToUpdate: []
+    traitDelta: []
+    flagsToSet: []
+    flagValues: 
+  - dialogueIndex: 3
+    choices:
+    - Sorry.
+    nextDialogueIndexes: 04000000
+    traitToUpdate: []
+    traitDelta: []
+    flagsToSet: []
+    flagValues: 

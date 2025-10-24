@@ -36,3 +36,21 @@ MonoBehaviour:
     traitDelta: []
     flagsToSet: []
     flagValues: 
+  - dialogueIndex: 2
+    choices:
+    - Good to know.
+    nextDialogueIndexes: 04000000
+    traitToUpdate: []
+    traitDelta: []
+    flagsToSet:
+    - '"InterviewSuccess"'
+    flagValues: 01
+  - dialogueIndex: 3
+    choices:
+    - Good to know.
+    nextDialogueIndexes: 04000000
+    traitToUpdate: []
+    traitDelta: []
+    flagsToSet:
+    - '"InterviewSuccess"'
+    flagValues: 01

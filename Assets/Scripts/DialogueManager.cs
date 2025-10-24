@@ -16,6 +16,8 @@ public class DialogueManager : MonoBehaviour
     public TraitsManager traitsManager;
     PlayerController playerController;
 
+    [SerializeField] public UnityEvent onDialogueEnded;
+
     private void Start()
     {
         uiController = UI_Controller.instance;
@@ -150,8 +152,8 @@ public class DialogueManager : MonoBehaviour
         uiController.ClearChoices();
         playerController.canMove = true;
         playerController.LockCursor();
+        onDialogueEnded.Invoke();
     }
-
 }
 
 #region // First Attempt At ProgressTracker Integration with choice buttons. //

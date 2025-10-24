@@ -6182,6 +6182,9 @@ MonoBehaviour:
   dialogueData: {fileID: 11400000, guid: c687d0917e0f2c040a518fdbfef9feeb, type: 2}
   isDialogueActive: 0
   traitsManager: {fileID: 0}
+  onDialogueEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &308990226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12442,6 +12445,21 @@ MonoBehaviour:
   dialogueData: {fileID: 11400000, guid: b2df4350d0207d4409fc3db12d6917cd, type: 2}
   isDialogueActive: 0
   traitsManager: {fileID: 0}
+  onDialogueEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &740221452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12474,6 +12492,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1330263305}
+        m_TargetAssemblyTypeName: ProgressTracker, Assembly-CSharp
+        m_MethodName: SetFlagFromEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: '"InterviewStarted"'
+          m_BoolArgument: 0
+        m_CallState: 2
   onConditionFail:
     m_PersistentCalls:
       m_Calls:
@@ -12488,6 +12518,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1330263305}
+        m_TargetAssemblyTypeName: ProgressTracker, Assembly-CSharp
+        m_MethodName: SetFlagFromEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: '"InterviewStarted"'
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!4 &740221453
@@ -14783,6 +14825,9 @@ MonoBehaviour:
   dialogueData: {fileID: 11400000, guid: afc778cf208b9884d9e4d49df8f93ec0, type: 2}
   isDialogueActive: 0
   traitsManager: {fileID: 0}
+  onDialogueEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &837253285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22707,7 +22752,9 @@ MonoBehaviour:
     value: 0
   - flagName: '"EnteredOnRed"'
     value: 0
-  - flagName: '"Thanks"'
+  - flagName: '"InterviewStarted"'
+    value: 0
+  - flagName: '"InterviewSuccess"'
     value: 0
 --- !u!1001 &1339546803
 PrefabInstance:
@@ -24109,6 +24156,125 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1405267489}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1405389083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1405389087}
+  - component: {fileID: 1405389086}
+  - component: {fileID: 1405389085}
+  - component: {fileID: 1405389084}
+  m_Layer: 0
+  m_Name: Ending_Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1405389084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405389083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856fe6a970717a54aa7b85921a44442c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditions:
+  - flagName: '"InterviewSuccess"'
+    requiredValue: 1
+  useOrLogic: 0
+--- !u!114 &1405389085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405389083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c65892f32875b4a99fe83df80b108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagFilter: Player
+  triggerDisabled: 0
+  condition: {fileID: 1405389084}
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 667241732}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onConditionFail:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1243533013}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!65 &1405389086
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405389083}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1405389087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405389083}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.814, y: 0.501, z: -0.683}
+  m_LocalScale: {x: 2.05, y: 1, z: 3.07}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1415778856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29377,6 +29543,9 @@ MonoBehaviour:
   dialogueData: {fileID: 11400000, guid: 2785dd1922c4e8d40b51ae784750340a, type: 2}
   isDialogueActive: 0
   traitsManager: {fileID: 0}
+  onDialogueEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1683351165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39226,6 +39395,7 @@ SceneRoots:
   - {fileID: 754944438}
   - {fileID: 2092665296}
   - {fileID: 308990228}
+  - {fileID: 1405389087}
   - {fileID: 1220401877}
   - {fileID: 151805005}
   - {fileID: 538195507}
