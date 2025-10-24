@@ -27,6 +27,14 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
     }
 
+    public void StartDialogueWithData (DialogueSO altDialogue)
+    {
+        dialogueData = altDialogue;
+        StartDialogue();
+    }
+
+
+
     public void StartDialogue()
     {
         //Debug.Log($"Starting dialogue for {this.gameObject.name} using DialogueSO: {dialogue.name}");

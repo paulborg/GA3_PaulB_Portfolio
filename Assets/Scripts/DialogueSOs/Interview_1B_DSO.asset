@@ -10,27 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106cafa0cd4540449855367ffabb1e49, type: 3}
-  m_Name: Hallway_DSO
+  m_Name: Interview_1B_DSO
   m_EditorClassIdentifier: 
-  charName: Me
+  charName: The Manager
   dialogueLines:
-  - Hmm... Should I be going down here?
-  - Maybe I should check in at the reception first...
+  - Oh, you're here... I wasn't notified. How did you get in?
+  - Protocol exists for a reason.
+  - You shouldn't make assumptions. Careless actions can lead to unintended consequences.
+  - Eagerness can be good. Intrusion is not.
   choices:
   - dialogueIndex: 0
     choices:
-    - '[Keep going]'
-    - '[Hesitate]'
-    nextDialogueIndexes: 0200000001000000
+    - The door was open...
+    nextDialogueIndexes: 01000000
     traitToUpdate: []
     traitDelta: []
-    flagsToSet:
-    - '"BypassedReception"'
-    flagValues: 01
+    flagsToSet: []
+    flagValues: 
   - dialogueIndex: 1
     choices:
-    - '[Turn back]'
-    nextDialogueIndexes: 02000000
+    - I didn't think it mattered.
+    - I just wanted to get started.
+    nextDialogueIndexes: 0200000003000000
     traitToUpdate: []
     traitDelta: []
     flagsToSet: []

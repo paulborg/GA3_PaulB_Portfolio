@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: Me
   dialogueLines:
-  - The receptionist said I should wait for the green signal...
+  - The light's still red...
   choices:
   - dialogueIndex: 0
     choices:
-    - I should wait.
-    - I don't want to wait.
+    - '[Wait]'
+    - '[Go in anyway]'
     nextDialogueIndexes: 0100000001000000
     traitToUpdate: []
     traitDelta: []
+    flagsToSet:
+    - 
+    - '"EnteredOnRed"'
+    flagValues: 0001
