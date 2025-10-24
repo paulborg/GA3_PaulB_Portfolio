@@ -103,16 +103,16 @@ public class ProgressTracker : MonoBehaviour
     }
 
     // DEBUG GUI for displaying all flags and their values //
-    private void OnGUI()
-    {
-        GUILayout.BeginArea(new Rect(10, 10, 300, 500), GUI.skin.box);
-        GUILayout.Label("<b>Progress flagList</b>");
-        foreach (var kvp in flagDictionary)
-        {
-            GUILayout.Label($"{kvp.Key}: {kvp.Value}");
-        }
-        GUILayout.EndArea();
-    }
+    //private void OnGUI()
+    //{
+    //    GUILayout.BeginArea(new Rect(10, 10, 300, 500), GUI.skin.box);
+    //    GUILayout.Label("<b>Progress flagList</b>");
+    //    foreach (var kvp in flagDictionary)
+    //    {
+    //        GUILayout.Label($"{kvp.Key}: {kvp.Value}");
+    //    }
+    //    GUILayout.EndArea();
+    //}
 }
 
 //public bool talkedToReceptionist;

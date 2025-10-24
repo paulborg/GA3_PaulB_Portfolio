@@ -69,4 +69,8 @@ public class UI_Controller : MonoBehaviour
     }
     #endregion
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
